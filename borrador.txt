@@ -1,0 +1,40 @@
+
+const alumnos = new Alumnado();
+
+alumnos.agregarAlumno("pepe","romo","15");
+console.log(alumnos.alumnos);
+
+
+/*
+let alumnos = [1];
+
+function altaAlumno() {
+    let nombreAlumno =document.getElementById("nombreAlumno").value;
+    let apellidoAlumno = document.getElementById("apellidoAlumno").value;
+    let edadAlumno = document.getElementById("edadAlumno").value;
+
+    console.log(nombreAlumno, apellidoAlumno, edadAlumno);
+    alert(`Felicidades! se ha dado de alta a ${nombreAlumno} ${apellidoAlumno}`)
+     return nombreAlumno, apellidoAlumno, edadAlumno;
+}
+
+//let alumnoNuevo =(nombreAlumno, apellidoAlumno, edadAlumno);
+console.log(alumnos);
+*/
+
+=================================================================================================================================
+class Alumnado{
+    constructor(){
+        this.alumnos = [],
+        this.materias = []   
+    }
+
+    agregarAlumno(nombre, apellido, edad){
+        const nuevoAlumno = {nombre, apellido, edad}
+        this.alumnos.push(nuevoAlumno)
+    }
+
+    agregarmateria(materia){
+        this.materias.push(materia)
+    }
+}
