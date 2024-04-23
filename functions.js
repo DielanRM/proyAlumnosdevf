@@ -27,7 +27,8 @@ class Alumno{
 }
 
 
-
+//VARIABLES GLOBALES
+var alumnos = [];
 
 
 function alta() {
@@ -39,10 +40,20 @@ function alta() {
     let nuevoAlumno = new Alumno(nombre, apellido, edad)
     console.log(nuevoAlumno);
     alert(`Felicidades! se ha dado de alta a ${nombre} ${apellido}`)
+    alumnos.push(nuevoAlumno);
     return nuevoAlumno;
 }
 
 
 console.log('dentro');
+console.log(alumnos);
 
+function asignarMaterias() {
+    let nombre = (prompt(`Cual es el nombre del alumno?`));
+    let apellido = (prompt(`Cual es el apellido del alumno?`));
+    let existe = alumnos.some(alumnoNombre => alumnoNombre.nombre == nombre );
+    console.log(existe);
+    console.log(alumnos);
+    console.log("materias");
 
+}
