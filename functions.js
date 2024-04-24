@@ -26,13 +26,38 @@ class Alumno{
     }
 }
 
+class Grupo{
+    constructor(nombre){
+        this.nombre = nombre,
+        this.alumnado = []
+    }
+    
+    pop(){//elimina y  muestra el ultimo elemento de nuestra pila
+        if(this.isEmpty()){//si el metodo esta vacio isEmpty nos ayudara mas tarde para saber si la pila esta vacia
+            return 'la pila esta vacia';
+        }
+        return this.alumnado.pop();
+    }
+    peek(){// retorna unicamente el valor
+        return this.alumnado[this.alumnado.length - 1];//esto es para conocer el tamano de mi pila y poder consultar asi el numero de la posicion
+    //  [0, 1, 2, 3, 4] este arreglo tiene tamano de 5 pero en la posicioon 4 encontramos el valor 4
+    }
+    size(){
+        return this.alumnado.length;
+    }
+    isEmpty(){
+        return this.alumnado.length === 0;
+    }
+}
+
 
 //VARIABLES GLOBALES
 var alumnos = [];
+var grupos = [];
+
 
 
 function alta() {
-    console.log(`hola`);
     let nombre = (prompt(`Cual es el nombre del alumno?`));
     let apellido = (prompt(`Cual es el apellido del alumno?`));
     let edad = (prompt(`Cual es la edad del alumno?`));
@@ -43,10 +68,6 @@ function alta() {
     alumnos.push(nuevoAlumno);
     return nuevoAlumno;
 }
-
-
-console.log('dentro');
-console.log(alumnos);
 
 
 function asignarMaterias() {
@@ -105,3 +126,30 @@ function asignarCalificaciones() {
 }
 
 
+function crearGrupo() {
+    let nombreGrupo = (prompt(`Cual sera el nombre del grupo?`))
+    let nuevoGrupo = new Grupo(nombreGrupo)
+
+    do {
+        let nombre = (prompt(`Cual es el nombre del alumno que será añadido?`));
+        let apellido = (prompt(`Cual es el apellido del alumno?`));
+
+        //Corrobora la existencia del alumno
+        let existe = alumnos.some(alumnoNombre => alumnoNombre.nombre === nombre && alumnoNombre.apellido === apellido);
+        if (existe) {
+            //encuentra el index
+            let index = alumnos.findIndex(indice => indice.nombre === nombre && indice.apellido === apellido)
+            var alumnoAnadir = alumnos[index]
+
+            //Asigna al grupo
+            console.log(nuevoGrupo);
+            nuevoGrupo.alumnado.push(alumnoAnadir)
+            grupos.push(nuevoGrupo)
+
+            var res = (prompt(`Desea asignar mas alumnos a este grupo? escriba Si, de lo contrario escriba No`)).toLowerCase();
+        }else{
+            alert('No se encontro el Alumno en la base de datos')
+        }
+    } while (res == 'si');
+    return nuevoGrupo
+}
