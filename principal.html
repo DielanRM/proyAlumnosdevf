@@ -13,10 +13,6 @@
 
     <section>
         <aside>
-            <p>Opciones para grupos</p>
-            <button type="button" id="grupos" onclick="crearGrupo()">Crear</button>
-
-
             <p>Dar de alta alumno</p>
             <button type="button" id="alumnado" onclick="alta()">Dar Alta</button>
 
@@ -26,13 +22,47 @@
             <p>Asignar Calificaciones</p>
             <button type="button" id="calificaciones" onclick="asignarCalificaciones()">Calificar</button>
 
+            <p>Calcular Promedio</p>
+            <button type="button" id="prom" onclick="promediar()">Promediar</button>
         </aside>
+
         <div id="opciones"></div>
-    </section>
+
+
+<section class="gruposBloque">
+    <p>Opciones para grupos</p>
+    <button type="button" id="grupos" onclick="crearGrupo()">Crear</button>
+
+    
+        <p>Buscar Alumno por Nombre</p>
+        <div class="busquedaArea">
+            <input type="text" class="busqueda" placeholder="Nombre del Alumno" id="buscarNombre">
+            <button type="button" onclick="buscaNombre()">Buscar</button>
+        </div>
+
+        
+        <p>Buscar Alumno por Apellido</p>
+        <div class="busquedaArea">
+            <input type="text" class="busqueda" placeholder="Apellido del Alumno" id="buscarApellido">
+            <button type="button" onclick="buscaApellido()">Buscar</button>
+        </div>
+
+        <p>Obtener lista de Alumnos</p>
+            <button type="button">Buscar</button>
+       
+
+        <p>Obtener el promedio del Grupo</p>
+            <button type="button">Buscar</button>
+</section>
+
+
+</section>
 
     <footer>
         <p>Universidad de desarrollo del Potencial</p>
     </footer>
+
+
     <script src="./functions.js"></script>
 </body>
 </html>

@@ -5,9 +5,27 @@ body{
 
 header{
     display: flex;
-    justify-content: end;
+    justify-content: space-around;
     padding-right: 1.5rem;
     background-color: aqua;
+    height: 30%;
+}
+
+.busqueda{
+    margin: 2rem 0 2rem 1rem;
+    width: 100%;
+    height: 200%;
+}
+
+.busquedaArea{
+    width: 100%;
+    background-color: brown;
+    display: flex;
+    flex-direction: row;
+    box-sizing: content-box;
+    margin: 0;
+    padding: 1rem 3rem 1rem 3rem;
+    height: 10px;
 }
 
 section{
@@ -21,17 +39,28 @@ aside{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 3rem;
+    margin-right: 1rem;
+    background-color: darkcyan;
 }
 
 div{
     background-color: coral;
-    box-sizing: content-box;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5rem;
-    margin: 1rem 7rem 3rem 7rem;
+    padding: 10rem;
+    margin: 1rem 1rem 3rem 1rem;
+}
+
+.gruposBloque{
+    background-color: blueviolet;
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 input{
@@ -46,7 +75,10 @@ input:hover{
 }
 
 p{
-    background-color: aquamarine;
+    margin-top: 2rem;
+    margin-bottom: 0;
+    font-size: large;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 footer{
@@ -56,9 +88,10 @@ footer{
 }
 
 button{
-    margin-top: 1rem;
+    margin-top: 0;
+    padding-top: 0;
     box-sizing: content-box;
-    width: 3rem;
-    height: 1rem;
+    width: 4.2rem;
+    height: 1.2rem;
     cursor: pointer;
 }

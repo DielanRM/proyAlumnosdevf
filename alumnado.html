@@ -4,28 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>alumnado</title>
+    <title>Grupos</title>
 </head>
 <body>
-    <header>
-        <h1 >Universidad de desarrollo del Potencial</h1>
-    </header>
-<div>
-    <h2>Llene el formulario con los datos del Alumno</h2>
-    <form id="ingreso">
-        <input type="text" placeholder="Nombre" id="nombreAlumno">
-        <input type="text" placeholder="Apellido" id="apellidoAlumno">
-        <input type="text" placeholder="Edad" id="edadAlumno">
-
-        <p id="mensaje">Aqui va el mensaje</p>
-    </form>
     
-    <button type="submit" onclick="altaAlumno()">Dar de Alta</button>
-</div>
+    <header>
+        <h2 id="bienvenida"></h2>
+    </header>
+
+    <section>
+        <aside>
+            <p>Opciones para grupos</p>
+            <button type="button" id="grupos" onclick="crearGrupo()">Crear</button>
+
+            <p>Dar de alta alumno</p>
+            <button type="button" id="alumnado" onclick="alta()">Dar Alta</button>
+
+             <!--<p>Asignar Materias</p>
+            <button type="button" id="asignatures" onclick="asignarMaterias()">Asignar</button>
+
+            <p>Asignar Calificaciones</p>
+            <button type="button" id="calificaciones" onclick="asignarCalificaciones()">Calificar</button> -->
+
+        </aside>
+        <div id="opciones"></div>
+    </section>
+
     <footer>
         <p>Universidad de desarrollo del Potencial</p>
     </footer>
-
-    <script src="functions.js"></script>
+    <script src="./functions.js"></script>
 </body>
 </html>

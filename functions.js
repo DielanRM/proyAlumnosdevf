@@ -1,13 +1,13 @@
 let bienvenida = document.getElementById("bienvenida");
 let prof = localStorage.getItem("profe");
-
+let show = document.getElementById("opciones");
 
 bienvenida.innerHTML = `Bienvenido Prof.   ${prof}`;
 
-/*Abre ventana de alumnado
-function alumnado() {
-    window.location.href = "alumnado.html";
-}*/
+//Abre ventana de alumnado grupos
+// function grupos() {
+//     window.location.href = "alumnado.html";
+// }
 
 class Alumno{
     constructor(nombre, apellido, edad){
@@ -24,7 +24,28 @@ class Alumno{
         const datos = {materia, calificacion}
         this.calificaciones.push(datos)
     }
+
+    calculaPromedio(){
+        console.log( "---------------CALCULA PROM----------------");
+        var a = 0;
+        for (let i = 0; i <= this.calificaciones.length; i++) {
+            
+            a += this.calificaciones[i].calificacion;
+            var prom = a/this.calificaciones.length;
+            console.log(prom);
+        }
+        return prom;
+    }
 }
+
+
+/*============================================   PRUEBA de metodos de alumno======================================
+let nuevoAlumno = new Alumno("pepe", "ruiz", "15")
+let nuevoAlumno2 = new Alumno("Ana", "perez", "15")
+//  nuevoAlumno.agregarCalificacion("mate", 10)
+//  nuevoAlumno.agregarCalificacion("esp", 5)
+//  console.log(nuevoAlumno);
+//  nuevoAlumno.calculaPromedio()*/
 
 class Grupo{
     constructor(nombre){
@@ -38,23 +59,27 @@ class Grupo{
         }
         return this.alumnado.pop();
     }
-    peek(){// retorna unicamente el valor
-        return this.alumnado[this.alumnado.length - 1];//esto es para conocer el tamano de mi pila y poder consultar asi el numero de la posicion
-    //  [0, 1, 2, 3, 4] este arreglo tiene tamano de 5 pero en la posicioon 4 encontramos el valor 4
-    }
-    size(){
-        return this.alumnado.length;
-    }
-    isEmpty(){
-        return this.alumnado.length === 0;
+
+    buscaNombre(nombre){
+        let busqueda;
+        busqueda = this.alumnado.filter(names => names.nombre == nombre)
+        //console.log(busqueda);
+        return busqueda;
     }
 }
+
+/*=========================================Prueba de metodos del grupo=====================================
+let grupoPrueba = new Grupo("E")
+console.log(grupoPrueba);
+grupoPrueba.alumnado.push(nuevoAlumno)
+grupoPrueba.alumnado.push(nuevoAlumno2)
+console.log(grupoPrueba);
+grupoPrueba.buscaNombre("Ana")*/
 
 
 //VARIABLES GLOBALES
 var alumnos = [];
 var grupos = [];
-
 
 
 function alta() {
@@ -64,7 +89,7 @@ function alta() {
 
     let nuevoAlumno = new Alumno(nombre, apellido, edad)
     console.log(nuevoAlumno);
-    alert(`Felicidades! se ha dado de alta a ${nombre} ${apellido}`)
+    show.innerHTML = `Felicidades! se ha dado de alta a ${nombre} ${apellido}`;
     alumnos.push(nuevoAlumno);
     return nuevoAlumno;
 }
@@ -120,7 +145,7 @@ function asignarCalificaciones() {
             var res = (prompt(`Desea asignar mas calificaciones a este alumno? escriba Si, de lo contrario escriba No`)).toLowerCase();
         } while (res == 'si');
 
-    } else {
+    } else {  
         alert(`El alumno no esta dado de alta`)
     }
 }
@@ -152,4 +177,28 @@ function crearGrupo() {
         }
     } while (res == 'si');
     return nuevoGrupo
+}
+
+function buscaNombre(){
+    let nombredGrupo = (prompt(`Cual es el nombre del Grupo?`));
+    let nombreABuscar = document.getElementById("buscarNombre").value
+
+    let existe = grupos.some(grupoNombre => grupoNombre.nombre === nombredGrupo);
+    if (existe) {
+        let index = grupos.findIndex(indice => indice.nombre === nombredGrupo)
+        console.log(nombreABuscar);
+        console.log(grupos[index]);
+        var selogro = grupos[index].buscaNombre(nombreABuscar);
+
+        let indice = selogro.findIndex(alumnoName => alumnoName.nombre === nombreABuscar)
+        console.log("no se", selogro[indice].nombre);
+        show.innerHTML = `El alumno ${selogro[indice].nombre} se encuntra en este grupo`;
+    }else{
+        console.log(poco);
+    }
+}
+
+function buscaApellido(){
+    let apellidoABuscar = document.getElementById("buscarApellido").value
+    console.log(apellidoABuscar);
 }
