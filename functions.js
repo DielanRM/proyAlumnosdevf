@@ -66,6 +66,13 @@ class Grupo{
         //console.log(busqueda);
         return busqueda;
     }
+
+    buscaApellido(apellido){
+        let busqueda;
+        busqueda = this.alumnado.filter(names => names.apellido == apellido)
+        //console.log(busqueda);
+        return busqueda;
+    }
 }
 
 /*=========================================Prueba de metodos del grupo=====================================
@@ -179,26 +186,34 @@ function crearGrupo() {
     return nuevoGrupo
 }
 
-function buscaNombre(){
+function buscaNombre() {
     let nombredGrupo = (prompt(`Cual es el nombre del Grupo?`));
     let nombreABuscar = document.getElementById("buscarNombre").value
-
     let existe = grupos.some(grupoNombre => grupoNombre.nombre === nombredGrupo);
+
     if (existe) {
         let index = grupos.findIndex(indice => indice.nombre === nombredGrupo)
-        console.log(nombreABuscar);
-        console.log(grupos[index]);
         var selogro = grupos[index].buscaNombre(nombreABuscar);
-
         let indice = selogro.findIndex(alumnoName => alumnoName.nombre === nombreABuscar)
-        console.log("no se", selogro[indice].nombre);
-        show.innerHTML = `El alumno ${selogro[indice].nombre} se encuntra en este grupo`;
-    }else{
-        console.log(poco);
+
+        show.innerHTML = `GRUPO ${nombredGrupo} <br><br>El alumno ${selogro[indice].nombre} ${selogro[indice].apellido} se encuntra en este grupo`;
+    } else {
+        alert(`Este grupo no existe`)
     }
 }
 
-function buscaApellido(){
+function buscaApellido() {
+    let nombredGrupo = (prompt(`Cual es el nombre del Grupo?`));
     let apellidoABuscar = document.getElementById("buscarApellido").value
-    console.log(apellidoABuscar);
+    let existe = grupos.some(grupoNombre => grupoNombre.nombre === nombredGrupo);
+
+    if (existe) {
+        let index = grupos.findIndex(indice => indice.nombre === nombredGrupo)
+        var selogro = grupos[index].buscaApellido(apellidoABuscar);
+        let indice = selogro.findIndex(alumnoName => alumnoName.apellido === apellidoABuscar)
+
+        show.innerHTML = `GRUPO ${nombredGrupo} <br><br>El alumno ${selogro[indice].nombre} ${selogro[indice].apellido} se encuntra en este grupo`;
+    } else {
+        alert(`Este grupo no existe`)
+    }
 }
