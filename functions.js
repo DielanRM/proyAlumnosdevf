@@ -27,25 +27,20 @@ class Alumno{
 
     calculaPromedio(){
         console.log( "---------------CALCULA PROM----------------");
-        var a = 0;
-        for (let i = 0; i <= this.calificaciones.length; i++) {
-            
-            a += this.calificaciones[i].calificacion;
-            var prom = a/this.calificaciones.length;
-            console.log(prom);
-        }
-        return prom;
-    }
+        let cantidad = this.calificaciones.length
+        var promedio = this.calificaciones.reduce((previo, calificacionActual)=> previo + calificacionActual.calificacion, 0)/cantidad;
+        return promedio;
+    }    
 }
 
 
-/*============================================   PRUEBA de metodos de alumno======================================
+//============================================   PRUEBA de metodos de alumno======================================
 let nuevoAlumno = new Alumno("pepe", "ruiz", "15")
 let nuevoAlumno2 = new Alumno("Ana", "perez", "15")
-//  nuevoAlumno.agregarCalificacion("mate", 10)
-//  nuevoAlumno.agregarCalificacion("esp", 5)
-//  console.log(nuevoAlumno);
-//  nuevoAlumno.calculaPromedio()*/
+  nuevoAlumno.agregarCalificacion("mate", 10)
+  nuevoAlumno.agregarCalificacion("esp", 5)
+  console.log("este es el alumno",nuevoAlumno);
+  nuevoAlumno.calculaPromedio("pepe")
 
 class Grupo{
     constructor(nombre){
@@ -83,7 +78,6 @@ grupoPrueba.alumnado.push(nuevoAlumno2)
 console.log(grupoPrueba);
 grupoPrueba.buscaNombre("Ana")*/
 
-
 //VARIABLES GLOBALES
 var alumnos = [];
 var grupos = [];
@@ -100,7 +94,6 @@ function alta() {
     alumnos.push(nuevoAlumno);
     return nuevoAlumno;
 }
-
 
 function asignarMaterias() {
     let nombre = (prompt(`Cual es el nombre del alumno?`));
@@ -126,7 +119,6 @@ function asignarMaterias() {
         alert(`El alumno no esta dado de alta`)
     }
 }
-
 
 function asignarCalificaciones() {
     let nombre = (prompt(`Cual es el nombre del alumno?`));
@@ -157,7 +149,6 @@ function asignarCalificaciones() {
     }
 }
 
-
 function crearGrupo() {
     let nombreGrupo = (prompt(`Cual sera el nombre del grupo?`))
     let nuevoGrupo = new Grupo(nombreGrupo)
@@ -184,6 +175,25 @@ function crearGrupo() {
         }
     } while (res == 'si');
     return nuevoGrupo
+}
+
+function promediar() {
+    let nombre = (prompt(`Cual es el nombre del alumno?`));
+    let apellido = (prompt(`Cual es el apellido del alumno?`));
+
+    //Corrobora la existencia del alumno
+    let existe = alumnos.some(alumnoNombre => alumnoNombre.nombre === nombre && alumnoNombre.apellido === apellido);
+    let index = alumnos.findIndex(indice => indice.nombre === nombre && indice.apellido === apellido)
+
+    if (existe) {
+        console.log("calificaciones");
+        console.log(alumnos[index].nombre);
+        console.log(alumnos[index].calculaPromedio());
+        var prom = alumnos[index].calculaPromedio();
+        console.log(prom);
+    } else {
+        alert(`El alumno no esta dado de alta`)
+    }
 }
 
 function buscaNombre() {
@@ -213,6 +223,40 @@ function buscaApellido() {
         let indice = selogro.findIndex(alumnoName => alumnoName.apellido === apellidoABuscar)
 
         show.innerHTML = `GRUPO ${nombredGrupo} <br><br>El alumno ${selogro[indice].nombre} ${selogro[indice].apellido} se encuntra en este grupo`;
+    } else {
+        alert(`Este grupo no existe`)
+    }
+}
+
+function listaAlumnos() {
+    let nombredGrupo = (prompt(`De que Grupo desea ver la lista?`));
+    let existe = grupos.some(grupoNombre => grupoNombre.nombre === nombredGrupo);
+    let index = grupos.findIndex(indice => indice.nombre === nombredGrupo)
+
+    if (existe) {
+        grupos[index].alumnado.forEach(element => {
+            var lista = document.getElementById("opciones");
+            let listanueva = document.createElement("p")
+
+            console.log(`experimento ${grupos[index].alumnado[0].calculaPromedio()}`);
+            var contenido = document.createTextNode(`Nombre: ${element.nombre} ${element.apellido}`);
+            console.log(element);
+            lista.appendChild(listanueva);
+            listanueva.appendChild(contenido)
+        });
+    } else {
+        alert(`Este grupo no existe`)
+    }
+}
+
+function promedioGrupal() {
+    let nombredGrupo = (prompt(`De que Grupo desea ver la lista?`));
+    let existe = grupos.some(grupoNombre => grupoNombre.nombre === nombredGrupo);
+    let index = grupos.findIndex(indice => indice.nombre === nombredGrupo)
+
+    if (existe) {
+        
+
     } else {
         alert(`Este grupo no existe`)
     }
