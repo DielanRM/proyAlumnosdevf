@@ -16,6 +16,7 @@ class Alumno{
         this.edad = edad,
         this.calificaciones = [],
         this.calificacionNumeros = [],
+        
         this.materias = []
     }
     agregarMateria(materia){
@@ -69,6 +70,8 @@ class Grupo{
         //console.log(busqueda);
         return busqueda;
     }
+
+
 }
 
 /*=========================================Prueba de metodos del grupo=====================================
@@ -229,8 +232,30 @@ function buscaApellido() {
     }
 }
 
-function grupoProm(params) {
-    console.log('ccc');
+function grupoProm() {
+    let nombredGrupo = (prompt(`De que Grupo desea ver la lista?`));
+    let existe = grupos.some(grupoNombre => grupoNombre.nombre === nombredGrupo);
+    let index = grupos.findIndex(indice => indice.nombre === nombredGrupo)
+
+    if (existe) {
+
+        var size = grupos[index].alumnado.length;
+        var sumaProms = 0 //se va acumulando el promedios de cada alumno dentro del grupo
+
+        for (let i = 0; i < size; i++) {// calcula el promedio individual de cada alumno dentro del grupo
+
+            var calificacionesAlumn = grupos[index].alumnado[i].calificacionNumeros
+            var promi = grupos[index].alumnado[i].calculaPromedio(calificacionesAlumn)
+            sumaProms = sumaProms + promi;
+        }
+
+        let promedioGrupal = sumaProms / size
+        show.innerHTML = `El promedio del Grupo ${nombredGrupo} es de: ${promedioGrupal}`;
+        return promedioGrupal
+
+    } else {
+        alert(`Este grupo no existe`)
+    }
 }
 
 function listaAlumnos() {
@@ -243,25 +268,11 @@ function listaAlumnos() {
             var lista = document.getElementById("opciones");
             let listanueva = document.createElement("p")
 
-            console.log(`experimento ${grupos[index].alumnado[0].calculaPromedio()}`);
             var contenido = document.createTextNode(`Nombre: ${element.nombre} ${element.apellido}`);
             console.log(element);
             lista.appendChild(listanueva);
             listanueva.appendChild(contenido)
         });
-    } else {
-        alert(`Este grupo no existe`)
-    }
-}
-
-function promedioGrupal() {
-    let nombredGrupo = (prompt(`De que Grupo desea ver la lista?`));
-    let existe = grupos.some(grupoNombre => grupoNombre.nombre === nombredGrupo);
-    let index = grupos.findIndex(indice => indice.nombre === nombredGrupo)
-
-    if (existe) {
-        
-
     } else {
         alert(`Este grupo no existe`)
     }
