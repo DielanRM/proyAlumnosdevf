@@ -38,3 +38,12 @@ class Alumnado{
         this.materias.push(materia)
     }
 }
+
+======================================================================
+        // var suma = 0;
+        // for (let i = 0; i < arregloCalif.length; i++) {
+        //     suma = suma + arregloCalif[i];
+        //     console.log(suma);
+        // }
+        // let prom = suma/arregloCalif.length;
+        // console.log(prom);

@@ -15,6 +15,7 @@ class Alumno{
         this.apellido = apellido,
         this.edad = edad,
         this.calificaciones = [],
+        this.calificacionNumeros = [],
         this.materias = []
     }
     agregarMateria(materia){
@@ -23,24 +24,24 @@ class Alumno{
     agregarCalificacion(materia, calificacion){
         const datos = {materia, calificacion}
         this.calificaciones.push(datos)
+        this.calificacionNumeros.push(calificacion)
     }
 
-    calculaPromedio(){
-        console.log( "---------------CALCULA PROM----------------");
-        let cantidad = this.calificaciones.length
-        var promedio = this.calificaciones.reduce((previo, calificacionActual)=> previo + calificacionActual.calificacion, 0)/cantidad;
+    calculaPromedio(arreglo){
+        var promedio = arreglo.reduce((previo, calificacionActual)=> 
+        previo + calificacionActual,0)/arreglo.length;
         return promedio;
     }    
 }
 
 
 //============================================   PRUEBA de metodos de alumno======================================
-let nuevoAlumno = new Alumno("pepe", "ruiz", "15")
-let nuevoAlumno2 = new Alumno("Ana", "perez", "15")
-  nuevoAlumno.agregarCalificacion("mate", 10)
-  nuevoAlumno.agregarCalificacion("esp", 5)
-  console.log("este es el alumno",nuevoAlumno);
-  nuevoAlumno.calculaPromedio("pepe")
+//  let nuevoAlumno = new Alumno("pepe", "ruiz", "15")
+//  let nuevoAlumno2 = new Alumno("Ana", "perez", "15")
+//    nuevoAlumno.agregarCalificacion("mate", 10)
+//    nuevoAlumno.agregarCalificacion("esp", 5)
+//    console.log("este es el alumno",nuevoAlumno);
+//   nuevoAlumno.calculaPromedio()
 
 class Grupo{
     constructor(nombre){
@@ -81,7 +82,6 @@ grupoPrueba.buscaNombre("Ana")*/
 //VARIABLES GLOBALES
 var alumnos = [];
 var grupos = [];
-
 
 function alta() {
     let nombre = (prompt(`Cual es el nombre del alumno?`));
@@ -137,7 +137,9 @@ function asignarCalificaciones() {
             //Asigna la materia y su calificacion
             let materia = (prompt(`Que materia calificara?`));
             let calificacion = (prompt(`Que calificacion obtuvo el alumno?`));
-            alumnos[index].agregarCalificacion(materia, calificacion)
+            let calif = parseFloat(calificacion)
+
+            alumnos[index].agregarCalificacion(materia, calif)
 
             console.log(alumnos[index]);
 
@@ -186,11 +188,10 @@ function promediar() {
     let index = alumnos.findIndex(indice => indice.nombre === nombre && indice.apellido === apellido)
 
     if (existe) {
-        console.log("calificaciones");
-        console.log(alumnos[index].nombre);
-        console.log(alumnos[index].calculaPromedio());
-        var prom = alumnos[index].calculaPromedio();
-        console.log(prom);
+        var arregloCalif = alumnos[index].calificacionNumeros;
+        var prom = alumnos[index].calculaPromedio(arregloCalif);
+        show.innerHTML = `El promedio de ${nombre} ${apellido} es de: ${prom}`;
+        return prom;
     } else {
         alert(`El alumno no esta dado de alta`)
     }
@@ -226,6 +227,10 @@ function buscaApellido() {
     } else {
         alert(`Este grupo no existe`)
     }
+}
+
+function grupoProm(params) {
+    console.log('ccc');
 }
 
 function listaAlumnos() {
