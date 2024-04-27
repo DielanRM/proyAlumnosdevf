@@ -16,7 +16,7 @@ class Alumno{
         this.edad = edad,
         this.calificaciones = [],
         this.calificacionNumeros = [],
-        
+        this.promedio = 0,
         this.materias = []
     }
     agregarMateria(materia){
@@ -33,6 +33,12 @@ class Alumno{
         previo + calificacionActual,0)/arreglo.length;
         return promedio;
     }    
+
+    agregaPromedio(prom){
+        this.promedio = prom;
+    }
+
+    
 }
 
 
@@ -49,12 +55,11 @@ class Grupo{
         this.nombre = nombre,
         this.alumnado = []
     }
-    
-    pop(){//elimina y  muestra el ultimo elemento de nuestra pila
-        if(this.isEmpty()){//si el metodo esta vacio isEmpty nos ayudara mas tarde para saber si la pila esta vacia
-            return 'la pila esta vacia';
-        }
-        return this.alumnado.pop();
+
+    obtieneAlumno(indice){
+        var alumnoObject = this.alumnado[indice];
+        console.log(alumnoObject);
+        return alumnoObject;
     }
 
     buscaNombre(nombre){
@@ -70,8 +75,6 @@ class Grupo{
         //console.log(busqueda);
         return busqueda;
     }
-
-
 }
 
 /*=========================================Prueba de metodos del grupo=====================================
@@ -264,15 +267,61 @@ function listaAlumnos() {
     let index = grupos.findIndex(indice => indice.nombre === nombredGrupo)
 
     if (existe) {
-        grupos[index].alumnado.forEach(element => {
-            var lista = document.getElementById("opciones");
-            let listanueva = document.createElement("p")
+        var size = grupos[index].alumnado.length;
 
-            var contenido = document.createTextNode(`Nombre: ${element.nombre} ${element.apellido}`);
-            console.log(element);
-            lista.appendChild(listanueva);
-            listanueva.appendChild(contenido)
+        for (let i = 0; i < size; i++) {
+            var alumno = grupos[index].alumnado[i];
+            var calificacionesAlumn = alumno.calificacionNumeros;
+            var promedioAlumn = alumno.calculaPromedio(calificacionesAlumn);
+            alumno.agregaPromedio(promedioAlumn);
+        }
+
+        // Ordenar alumnado por promedio
+        grupos[index].alumnado.sort((a, b) => a.promedio - b.promedio);
+
+        // Mostrar lista ordenada
+        var lista = document.getElementById("opciones");
+        lista.innerHTML = ""; // Limpiar la lista antes de mostrar los resultados
+
+        grupos[index].alumnado.forEach(alumno => {
+            let item = document.createElement("p");
+            item.textContent = `Nombre: ${alumno.nombre} ${alumno.apellido}, Promedio: ${alumno.promedio}`;
+            lista.appendChild(item);
         });
+        
+    } else {
+        alert(`Este grupo no existe`)
+    }
+}
+
+function listaDesc() {
+    let nombredGrupo = (prompt(`De que Grupo desea ver la lista?`));
+    let existe = grupos.some(grupoNombre => grupoNombre.nombre === nombredGrupo);
+    let index = grupos.findIndex(indice => indice.nombre === nombredGrupo)
+
+    if (existe) {
+        var size = grupos[index].alumnado.length;
+
+        for (let i = 0; i < size; i++) {
+            var alumno = grupos[index].alumnado[i];
+            var calificacionesAlumn = alumno.calificacionNumeros;
+            var promedioAlumn = alumno.calculaPromedio(calificacionesAlumn);
+            alumno.agregaPromedio(promedioAlumn);
+        }
+
+        // Ordenar alumnado por promedio
+        grupos[index].alumnado.sort((a, b) => b.promedio - a.promedio );
+
+        // Mostrar lista ordenada
+        var lista = document.getElementById("opciones");
+        lista.innerHTML = ""; // Limpiar la lista antes de mostrar los resultados
+
+        grupos[index].alumnado.forEach(alumno => {
+            let item = document.createElement("p");
+            item.textContent = `Nombre: ${alumno.nombre} ${alumno.apellido}, Promedio: ${alumno.promedio}`;
+            lista.appendChild(item);
+        });
+        
     } else {
         alert(`Este grupo no existe`)
     }
