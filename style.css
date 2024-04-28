@@ -2,19 +2,56 @@ body{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    background-color: burlywood;
+    background-color: rgb(243, 236, 227);
+}
+
+.main{
+    margin: 0;
+    padding: 5rem;
+    border: none;
+    width: 100%;
+    height: 50%;
+}
+
+img{
+    width: 8rem;    
+    height: 8rem;
+    border-radius: 50rem;
+}
+
+.buho{
+    margin-top: 0;
+    padding-top: 0;
+    width: 15rem;    
+    height: 15rem;
+    border-radius: 50rem;
+}
+
+h1{
+    color: aliceblue;
+}
+
+h2{
+    font-size: xx-large;
+    color: aliceblue;
+    
 }
 
 header{
     display: flex;
     justify-content: space-around;
     padding-right: 1.5rem;
-    background-color: aqua;
+    background-color: rgb(14, 44, 242);
+    border-bottom: solid  rgb(250, 200, 17) .5rem;
     height: 30%;
 }
 
 form{
     padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .busqueda{
@@ -26,7 +63,8 @@ form{
 }
 
 .busquedaArea{
-    width: 80%;
+    width: 60%;
+    border: none;
     border-radius: 10rem;
     background-color: rgb(250, 200, 17);
     display: flex;
@@ -45,8 +83,8 @@ form{
 section{
     display: flex;
     justify-content: space-around;
-    margin-top: 6rem;
-    margin-bottom: 6rem;
+    margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
 }
 
 aside{
@@ -56,7 +94,7 @@ aside{
     align-items: center;
     margin: 0;
     padding: 0;
-    background-color: darkcyan;
+    background-color: rgba(0, 139, 139, 0.646);
 }
 
 div{
@@ -71,11 +109,19 @@ div{
     margin: 0;
 }
 
+.listados{
+    padding: .5rem;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    height: 2rem;
+}
+
 .gruposBloque{
     border-radius: 2rem;
     margin: 0;
     padding: 0 1rem 1rem 1rem;
-    background-color: blueviolet;
+    background-color: rgba(0, 139, 139, 0.646);
     box-sizing: content-box;
     display: flex;
     align-items: center;
@@ -93,7 +139,7 @@ input{
 }
 
 input:hover{
-    box-shadow: 0 1rem 2rem 0 blue;
+    box-shadow: 0 .5rem .5rem 0 blue;
 }
 
 p{
@@ -112,10 +158,13 @@ footer{
 }
 
 button{
+    background-color:  rgb(250, 200, 17);
+    border-radius: 1rem;
     margin-top: 0;
+    margin-left: .5rem;
     padding-top: 0;
     box-sizing: content-box;
-    width: 4.2rem;
+    width: 5.2rem;
     height: 1.2rem;
     cursor: pointer;
 }

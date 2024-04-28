@@ -2,6 +2,7 @@ let bienvenida = document.getElementById("bienvenida");
 let prof = localStorage.getItem("profe");
 let show = document.getElementById("opciones");
 
+
 bienvenida.innerHTML = `Bienvenido Prof.   ${prof}`;
 
 //Abre ventana de alumnado grupos
@@ -54,12 +55,6 @@ class Grupo{
     constructor(nombre){
         this.nombre = nombre,
         this.alumnado = []
-    }
-
-    obtieneAlumno(indice){
-        var alumnoObject = this.alumnado[indice];
-        console.log(alumnoObject);
-        return alumnoObject;
     }
 
     buscaNombre(nombre){
